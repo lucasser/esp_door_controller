@@ -50,9 +50,9 @@ void setup() {
 void SetRow(int row, int height) {
   Serial.print(row);
   Serial.print(height);
-  lc.setRow(0, row, B00000000);
+  lc.setColumn(0, 7 - row, B00000000);
   for (int x = 0; x <= height; x++) {
-    lc.setLed(0, row, x, true);
+    lc.setLed(0, x, 7 - row, true);
   }
 }
  
