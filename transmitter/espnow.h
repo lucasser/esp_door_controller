@@ -16,6 +16,7 @@ uint8_t broadcastAddress[] = {0x40, 0x22, 0xD8, 0x5F, 0xF4, 0x7C};
 struct struct_message {
     int id; // must be unique for each sender board
     int data;
+    int tick;
 };
 
 // Create a struct_message called out_data
@@ -34,6 +35,7 @@ void espNowLoop(void * pvParameters) {
   for(;;) {
     out_data.id = NUMBER;
     out_data.data = data;
+    out_data.tick = tick;
     if (tick == 300) {
       tick = 0;
       esp_now_send(broadcastAddress, (uint8_t *) &out_data, sizeof(out_data));
